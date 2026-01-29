@@ -1,0 +1,8 @@
+{
+  "name": "finlo-trading-dashboard-landing",
+  "version": "1.0.0",
+  "description": "Landing page for Ultimate Trading Dashboard Pro Notion template",
+  "scripts": {
+    "start": "npx serve ."
+  }
+}
