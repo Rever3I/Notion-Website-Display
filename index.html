@@ -327,6 +327,89 @@
             background: var(--bg-tertiary);
         }
 
+        .showcase-image {
+            cursor: zoom-in;
+            transition: transform 0.2s ease;
+        }
+
+        .showcase-image:hover {
+            transform: scale(1.01);
+        }
+
+        /* Video Container */
+        .video-container {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        #showcase-video {
+            display: none;
+        }
+
+        #showcase-video.active {
+            display: block;
+        }
+
+        #showcase-img.hidden {
+            display: none;
+        }
+
+        /* Lightbox */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 9999;
+            cursor: zoom-out;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .lightbox.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .lightbox img {
+            max-width: 95%;
+            max-height: 95%;
+            object-fit: contain;
+            border-radius: 8px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            font-size: 40px;
+            color: white;
+            cursor: pointer;
+            opacity: 0.8;
+            transition: opacity 0.2s ease;
+        }
+
+        .lightbox-close:hover {
+            opacity: 1;
+        }
+
         /* Pain Points */
         .pain-section {
             padding: 100px 0;
@@ -777,11 +860,26 @@
                     <button class="showcase-tab" data-tab="trading-log">📝 Trading Log</button>
                     <button class="showcase-tab" data-tab="discipline">✅ Discipline</button>
                     <button class="showcase-tab" data-tab="calendar">📅 Calendar</button>
+                    <button class="showcase-tab" data-tab="video">🎬 Video Demo</button>
                 </div>
-                <img src="images/dashboard.png" alt="Dashboard Overview" class="showcase-image" id="showcase-img">
+                <img src="images/dashboard.png" alt="Dashboard Overview" class="showcase-image" id="showcase-img" onclick="openLightbox(this.src)">
+                <div id="showcase-video" class="video-container">
+                    <iframe 
+                        src="https://www.youtube.com/embed/-cShsX75zNU?rel=0" 
+                        title="Ultimate Trading Dashboard Demo"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen>
+                    </iframe>
+                </div>
             </div>
         </div>
     </section>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+        <span class="lightbox-close">&times;</span>
+        <img src="" alt="Enlarged view" id="lightbox-img">
+    </div>
 
     <!-- Pain Points / Comparison -->
     <section class="pain-section fade-in-section">
@@ -1025,7 +1123,7 @@
             });
         });
 
-        // Tab switching with real images
+        // Tab switching with real images and video
         const tabImages = {
             'dashboard': { src: 'images/dashboard.png', alt: 'Dashboard Overview with accounts, returns chart, and strategy analysis' },
             'trading-log': { src: 'images/trading-log.png', alt: 'Trading Log with holding positions and closed trades' },
@@ -1033,16 +1131,48 @@
             'calendar': { src: 'images/calendar.png', alt: 'Calendar view with daily and weekly reviews' }
         };
 
+        const showcaseImg = document.getElementById('showcase-img');
+        const showcaseVideo = document.getElementById('showcase-video');
+
         document.querySelectorAll('.showcase-tab').forEach(tab => {
             tab.addEventListener('click', () => {
                 document.querySelectorAll('.showcase-tab').forEach(t => t.classList.remove('active'));
                 tab.classList.add('active');
                 
                 const tabName = tab.dataset.tab;
-                const img = document.getElementById('showcase-img');
-                img.src = tabImages[tabName].src;
-                img.alt = tabImages[tabName].alt;
+                
+                if (tabName === 'video') {
+                    showcaseImg.classList.add('hidden');
+                    showcaseVideo.classList.add('active');
+                } else {
+                    showcaseImg.classList.remove('hidden');
+                    showcaseVideo.classList.remove('active');
+                    showcaseImg.src = tabImages[tabName].src;
+                    showcaseImg.alt = tabImages[tabName].alt;
+                }
             });
+        });
+
+        // Lightbox functions
+        function openLightbox(src) {
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+            lightboxImg.src = src;
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            const lightbox = document.getElementById('lightbox');
+            lightbox.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        // Close lightbox with ESC key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeLightbox();
+            }
         });
 
         // Smooth scroll for anchor links
@@ -1058,3 +1188,4 @@
     </script>
 </body>
 </html>
+
