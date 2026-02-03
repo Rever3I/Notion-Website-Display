@@ -415,6 +415,117 @@
             opacity: 1;
         }
 
+        /* Product Details */
+        .product-details {
+            padding: 80px 0;
+        }
+
+        .product-details-header {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+
+        .product-details-header .tagline {
+            font-size: 20px;
+            color: var(--accent-green);
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .details-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 28px;
+        }
+
+        .detail-block {
+            background: var(--bg-secondary);
+            border-radius: var(--radius-lg);
+            padding: 28px;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+        }
+
+        .detail-block:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .detail-block h3 {
+            font-size: 17px;
+            font-weight: 600;
+            margin-bottom: 14px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .detail-block h3 .icon {
+            font-size: 22px;
+        }
+
+        .detail-block ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .detail-block ul li {
+            font-size: 14px;
+            color: var(--text-secondary);
+            padding: 5px 0;
+            padding-left: 20px;
+            position: relative;
+            line-height: 1.5;
+        }
+
+        .detail-block ul li::before {
+            content: '•';
+            position: absolute;
+            left: 4px;
+            color: var(--accent-green);
+            font-weight: 700;
+        }
+
+        .product-for-you {
+            margin-top: 40px;
+            background: var(--bg-secondary);
+            border-radius: var(--radius-lg);
+            padding: 32px;
+            border: 1px solid var(--border-color);
+        }
+
+        .product-for-you h3 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+
+        .product-for-you ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 8px;
+        }
+
+        .product-for-you ul li {
+            font-size: 14px;
+            color: var(--text-secondary);
+            padding: 6px 0 6px 24px;
+            position: relative;
+            line-height: 1.5;
+        }
+
+        .product-for-you ul li::before {
+            content: '✓';
+            position: absolute;
+            left: 2px;
+            color: var(--accent-green);
+            font-weight: 600;
+        }
+
         /* Pain Points */
         .pain-section {
             padding: 100px 0;
@@ -886,6 +997,73 @@
         <span class="lightbox-close">&times;</span>
         <img src="" alt="Enlarged view" id="lightbox-img">
     </div>
+
+    <!-- Product Details -->
+    <section class="product-details fade-in-section">
+        <div class="container">
+            <div class="product-details-header">
+                <p class="tagline">&#128200; TRACK EVERY TRADE. MASTER EVERY STRATEGY.</p>
+                <h2 class="section-title">What's Included</h2>
+                <p class="section-subtitle" style="max-width:650px;margin:0 auto;">Ultra Stock Trading Dashboard is a complete trading journal for stocks, ETFs, and crypto. Multi-account tracking, strategy analysis, discipline management&mdash;all in one place.</p>
+            </div>
+            <div class="details-grid">
+                <div class="detail-block">
+                    <h3><span class="icon">&#128202;</span> Multi-Account Dashboard</h3>
+                    <ul>
+                        <li>Main, Paper, Crypto, Retirement accounts in one view</li>
+                        <li>Deposit/Withdrawal tracking &mdash; know your true P&amp;L</li>
+                        <li>Real-time balance with Unrealized Gains</li>
+                    </ul>
+                </div>
+                <div class="detail-block">
+                    <h3><span class="icon">&#128221;</span> Stock-Optimized Entry</h3>
+                    <ul>
+                        <li>Dollar-based P&amp;L calculation</li>
+                        <li>Ticker, Quantity, Price, Time Frame tracking</li>
+                        <li>One-click position close with auto-sync</li>
+                    </ul>
+                </div>
+                <div class="detail-block">
+                    <h3><span class="icon">&#128270;</span> 4-Dimensional Analysis</h3>
+                    <ul>
+                        <li>Strategy, Ticker, Time Frame, Mistake breakdowns</li>
+                        <li>Find what prints and what bleeds</li>
+                    </ul>
+                </div>
+                <div class="detail-block">
+                    <h3><span class="icon">&#9989;</span> Discipline System</h3>
+                    <ul>
+                        <li>Pre-Session &amp; Entry Checklists</li>
+                        <li>Trading Rules with Violation Log</li>
+                        <li>Clean Days Counter</li>
+                    </ul>
+                </div>
+                <div class="detail-block">
+                    <h3><span class="icon">&#128197;</span> Review Calendar</h3>
+                    <ul>
+                        <li>Green/Red Day visualization</li>
+                        <li>Daily, Weekly, Monthly performance at a glance</li>
+                        <li>Violation alerts on calendar</li>
+                    </ul>
+                </div>
+                <div class="detail-block">
+                    <h3><span class="icon">&#127919;</span> Goal Tracking</h3>
+                    <ul>
+                        <li>Set monthly targets for P&amp;L and win rate</li>
+                        <li>Visual progress bars with automated calculations</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="product-for-you">
+                <h3>&#128161; Perfect For You If...</h3>
+                <ul>
+                    <li>You trade stocks, ETFs, or crypto and want dollar-based P&amp;L tracking</li>
+                    <li>You manage multiple accounts (personal, paper, retirement)</li>
+                    <li>You want to build discipline with a systematic approach</li>
+                </ul>
+            </div>
+        </div>
+    </section>
 
     <!-- Pain Points / Comparison -->
     <section class="pain-section fade-in-section">
